@@ -1,0 +1,10 @@
+gcloud
+google-cloud-aiplatform 
+langchain
+langchain_google_vertexai
+langchain_core
+protobuf
+pydantic
+Requests
+vertexai
+streamlit

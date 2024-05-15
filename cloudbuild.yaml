@@ -1,0 +1,8 @@
+steps:
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['builds', 'submit', '--config', 'IaaC/modulos/Buckets/cloudbuild.yaml', '.']
+    id: 'buckets'
+
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['builds', 'submit', '--config', 'IaaC/modulos/CloudFunction/cloudbuild.yaml', '.']
+    id: 'cloudfunction'
