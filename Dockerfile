@@ -1,8 +1,10 @@
-FROM ubuntu
-ENV DEBIAN_FRONTEND noninteractive
+# Usa una imagen base que contenga el sistema operativo que deseas
+FROM ubuntu:latest
+
+# Actualiza los repositorios e instala GCC
 RUN apt-get update && \
-    apt-get -y install gcc mono-mcs && \
-    rm -rf /var/lib/apt/lists/*
+    apt-get install -y gcc
+    
 FROM python:3.12-slim
 EXPOSE 8080
 WORKDIR /app
