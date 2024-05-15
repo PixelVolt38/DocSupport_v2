@@ -14,7 +14,7 @@ text_model = GenerativeModel("gemini-1.0-pro")
 multimodal_model = GenerativeModel("gemini-1.0-pro-vision")
 
 # Specify the PDF folder with multiple PDF
-pdf_folder_path = "test_img/data/"  # if running in Vertex AI Workbench.
+pdf_folder_path = "data/"  # if running in Vertex AI Workbench.
 
 # Specify the image description prompt. Change it
 image_description_prompt = """Explain what is going on in the image.
@@ -27,7 +27,7 @@ Do not include any numbers that are not mentioned in the image.
 text_metadata_df, image_metadata_df = get_document_metadata(
     multimodal_model,  # we are passing gemini 1.0 pro vision model
     pdf_folder_path,
-    image_save_dir="test_img/images",
+    image_save_dir="images",
     image_description_prompt=image_description_prompt,
     embedding_size=1408,
     add_sleep_after_page = True, # Uncomment this if you are running into API quota issues
@@ -38,5 +38,5 @@ text_metadata_df, image_metadata_df = get_document_metadata(
 
 print("\n\n --- Completed processing. ---")
 
-text_metadata_df.to_csv('test_img/dataframes/text_metadata_df.csv', index=False)
-image_metadata_df.to_csv('test_img/dataframes/image_metadata_df.csv', index=False)
+text_metadata_df.to_csv('dataframes/text_metadata_df.csv', index=False)
+image_metadata_df.to_csv('dataframes/image_metadata_df.csv', index=False)

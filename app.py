@@ -3,9 +3,9 @@ import streamlit as st
 import random
 import time
 from PIL import Image, ImageEnhance
-from backend import *
+from conversacion import *
 
-crear_conversacion()
+#crear_conversacion()
 st.cache_data.clear()
 user_avatar = "😀"
 assistant_avatar = "interfaz/imgs/Galleta.jpg"
@@ -55,10 +55,10 @@ input_language = st.sidebar.selectbox("idioma",
                     #help="""Choose the input info of your molecule. If the app is slow, use SMILES input.""" + smiles_help
                     )
 
-if input_language:
-    cambiar_idioma(input_language)
-    #st.session_state.clear()
-    print(input_language)
+#if input_language:
+#    cambiar_idioma(input_language)
+#    #st.session_state.clear()
+#    print(input_language)
 
 #st.image("interfaz/imgs/inetum_logo.jpg")
 # Streamed response emulator
@@ -66,7 +66,7 @@ def response_generator():
     if not prompt:
         response = "¡Hola! Soy DataQuality Support, un chatbot que busca ayudar a solucionar cualquier duda que tengas acerca de la plataforma DataQuality Platform. Hazme cualquier pregunta que tengas."
     else:
-        response = answer(prompt)
+        response = ask(prompt)
     return response
     # for word in response.split(): 
     #     yield word + " "

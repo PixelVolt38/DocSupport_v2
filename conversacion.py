@@ -24,8 +24,8 @@ text_model = GenerativeModel("gemini-1.0-pro")
 multimodal_model = GenerativeModel("gemini-1.0-pro-vision")
 
 import pandas as pd
-text_metadata_df_2 = pd.read_csv('test_img/dataframes/text_metadata_df.csv')
-image_metadata_df_2 = pd.read_csv('test_img/dataframes/image_metadata_df.csv')
+text_metadata_df_2 = pd.read_csv('dataframes/text_metadata_df.csv')
+image_metadata_df_2 = pd.read_csv('dataframes/image_metadata_df.csv')
 
 # Convert the columns to lists using eval()
 text_metadata_df_2["text_embedding_page"] = text_metadata_df_2["text_embedding_page"].apply(eval)
