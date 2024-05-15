@@ -1,11 +1,11 @@
 # Usa una imagen base que contenga el sistema operativo que deseas
-FROM ubuntu:latest
-
-# Actualiza los repositorios e instala GCC
-RUN apt-get update && \
-    apt-get install -y gcc
-    
-FROM python:3.12-slim
+#FROM ubuntu:latest
+#
+## Actualiza los repositorios e instala GCC
+#RUN apt-get update && \
+#    apt-get install -y gcc
+#
+FROM python:3.11-slim
 EXPOSE 8080
 WORKDIR /app
 COPY . ./
