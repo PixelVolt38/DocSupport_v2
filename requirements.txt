@@ -8,4 +8,3 @@ streamlit
 fitz
 frontend
 Pillow
-traits
