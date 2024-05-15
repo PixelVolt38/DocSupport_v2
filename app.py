@@ -1,8 +1,5 @@
 #streamlit run 
 import streamlit as st
-import random
-import time
-from PIL import Image, ImageEnhance
 from conversacion import *
 
 #crear_conversacion()

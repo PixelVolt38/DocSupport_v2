@@ -1,4 +1,4 @@
-from IPython.display import Markdown, display
+from IPython.display import Markdown
 
 PROJECT_ID = "ceep-394706"  # @param {type:"string"}
 LOCATION = "europe-west4"  # @param {type:"string"}
@@ -10,14 +10,8 @@ import vertexai
 vertexai.init(project=PROJECT_ID, location=LOCATION)
     
 from vertexai.generative_models import (
-    Content,
     GenerationConfig,
-    GenerationResponse,
     GenerativeModel,
-    HarmCategory,
-    HarmBlockThreshold,
-    Image,
-    Part,
 )
 
 text_model = GenerativeModel("gemini-1.0-pro")

@@ -4,5 +4,4 @@ WORKDIR /app
 COPY . ./
 RUN pip install -r requirements.txt
 RUN pip3 install --upgrade --user google-cloud-aiplatform
-RUN pip install traits[build]
 ENTRYPOINT ["streamlit", "run", "app.py", "--server.port=8080", "--server.address=0.0.0.0"]
