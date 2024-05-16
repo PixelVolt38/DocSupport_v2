@@ -129,18 +129,9 @@ def ask(query):
 
     print("\n\nDocSupport:\n")
     # Respuesta de Gemini
-    Markdown(
-        get_gemini_response(
-            multimodal_model,
-            model_input=[prompt],
-            stream=True,
-            generation_config=GenerationConfig(temperature=0.4, max_output_tokens=2048),
-        )
-    )
+    # Markdown(
+    return get_gemini_response( multimodal_model, model_input=[prompt], stream=True, generation_config=GenerationConfig(temperature=0.4, max_output_tokens=2048))
 
-    if ADV_RESULT:
-        adv_results(matching_results_image_fromdescription_data, matching_results_chunks_data)
+    #if ADV_RESULT:
+    #    adv_results(matching_results_image_fromdescription_data, matching_results_chunks_data)
     
-while True:
-    query = input("\n\nUsuario\n")
-    ask(query)
