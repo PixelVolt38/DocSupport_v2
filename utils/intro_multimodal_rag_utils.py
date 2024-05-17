@@ -505,7 +505,13 @@ def get_document_metadata(
 
         doc, num_pages = get_pdf_doc_object(pdf_path)
 
-        file_name = pdf_path.split("/")[-1]
+        # Esto es una prueba por que da un error cuando los ducmuentos usan \
+        temp = pdf_path
+        if "\\" in temp: temp = temp.split("\\")[-1]
+        if "/" in temp: temp = temp.split("/")[-1]
+        file_name = temp
+        # Aqui acaba la prueba, codigo anterior:
+        # file_name = pdf_path.split("/")[-1]
 
         text_metadata: Dict[Union[int, str], Dict] = {}
         image_metadata: Dict[Union[int, str], Dict] = {}

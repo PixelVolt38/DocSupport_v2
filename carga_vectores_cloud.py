@@ -1,5 +1,4 @@
 import vertexai
-from utils.intro_multimodal_rag_utils import get_document_metadata
 from vertexai.generative_models import GenerativeModel
 
 def main(cloud_event):
@@ -7,7 +6,9 @@ def main(cloud_event):
   # Initialize Vertex AI
   PROJECT_ID = os.getenv('PROJECT_ID')
   LOCATION = os.getenv('LOCATION')
-  vertexai.init(project=PROJECT_ID, location=LOCATION)    
+  vertexai.init(project=PROJECT_ID, location=LOCATION)
+
+  from utils.intro_multimodal_rag_utils import get_document_metadata
 
   # Load Models
   text_model = GenerativeModel("gemini-1.0-pro")
@@ -15,8 +16,6 @@ def main(cloud_event):
 
   # Specify the PDF folder with multiple PDF
   pdf_folder_path = "gs://docsupport-data/"  # if running in Vertex AI Workbench.
-
-  
 
   # Specify the image description prompt. Change it
   image_description_prompt = """Explain what is going on in the image.
@@ -40,28 +39,5 @@ def main(cloud_event):
 
   print("\n\n --- Completed processing. ---")
 
-  text_metadata_df.to_csv('dataframes/text_metadata_df.csv', index=False)
-  image_metadata_df.to_csv('dataframes/image_metadata_df.csv', index=False)
-
-# Triggered by a change in a storage bucket
-#@functions_framework.cloud_event
-#def hello_gcs(cloud_event):
-#    data = cloud_event.data
-#
-#    event_id = cloud_event["id"]
-#    event_type = cloud_event["type"]
-#
-#    bucket = data["bucket"]
-#    name = data["name"]
-#    metageneration = data["metageneration"]
-#    timeCreated = data["timeCreated"]
-#    updated = data["updated"]
-#
-#    print(f"Event ID: {event_id}")
-#    print(f"Event type: {event_type}")
-#    print(f"Bucket: {bucket}")
-#    print(f"File: {name}")
-#    print(f"Metageneration: {metageneration}")
-#    print(f"Created: {timeCreated}")
-#    print(f"Updated: {updated}")
-#
+  text_metadata_df.to_csv('gs://docsupport-data/text_metadata_df.csv', index=False)
+  image_metadata_df.to_csv('gs://docsupport-data/image_metadata_df.csv', index=False)

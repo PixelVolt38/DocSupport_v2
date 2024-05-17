@@ -27,11 +27,6 @@ st.set_page_config(
         """
     }
 )
-
-
-
-
-
 # st.sidebar.markdown(
 #         f'<img src="interfaz\imgs\inetum_logo.jpg" />',
 #         unsafe_allow_html=True,
