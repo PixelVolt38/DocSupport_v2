@@ -8,3 +8,7 @@ streamlit
 fitz
 frontend
 Pillow
+pandas
+utils
+IPython
+pymupdf
