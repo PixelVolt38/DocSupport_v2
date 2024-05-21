@@ -11,6 +11,5 @@ Pillow
 pandas
 utils
 IPython
-pymupdf
-PyMuPDF>=1.18.19
+PyMuPDF==1.24.4
 tools
