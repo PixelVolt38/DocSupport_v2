@@ -12,4 +12,5 @@ pandas
 utils
 IPython
 pymupdf
+PyMuPDF>=1.18.19
 tools

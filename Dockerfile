@@ -26,8 +26,6 @@ COPY . ./
 # Instalar las dependencias de Python
 RUN pip install --no-cache-dir -r requirements.txt
 RUN pip3 install --upgrade --user google-cloud-aiplatform
-RUN pip3 install -U 'anthropic[vertex]'
-RUN pip install -U langchain-community
 
 # Comando para ejecutar la aplicación de Streamlit
 ENTRYPOINT ["streamlit", "run", "app.py", "--server.port=8080", "--server.address=0.0.0.0"]
