@@ -6,6 +6,7 @@ from typing import Any, Dict, Iterable, List, Optional, Tuple, Union
 from IPython.display import display
 import PIL
 import fitz
+import pymupdf
 import numpy as np
 import pandas as pd
 import requests
@@ -114,7 +115,7 @@ def load_image_bytes(image_path):
         return open(image_path, "rb").read()
 
 
-def get_pdf_doc_object(pdf_path: str) -> tuple[fitz.Document, int]:
+def get_pdf_doc_object(pdf_path: str) -> tuple[pymupdf.Document, int]:
     """
     Opens a PDF file using fitz.open() and returns the PDF document object and the number of pages.
 
@@ -129,7 +130,7 @@ def get_pdf_doc_object(pdf_path: str) -> tuple[fitz.Document, int]:
 
     """
     # Open the PDF file
-    doc = fitz.open(pdf_path)
+    doc = pymupdf.open(pdf_path)
 
     # Get the number of pages in the PDF file
     num_pages = len(doc)
