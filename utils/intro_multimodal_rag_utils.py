@@ -117,13 +117,13 @@ def load_image_bytes(image_path):
 
 def get_pdf_doc_object(pdf_path: str) -> tuple[pymupdf.Document, int]:
     """
-    Opens a PDF file using fitz.open() and returns the PDF document object and the number of pages.
+    Opens a PDF file using pymupdf.open() and returns the PDF document object and the number of pages.
 
     Args:
         pdf_path: The path to the PDF file.
 
     Returns:
-        A tuple containing the `fitz.Document` object and the number of pages in the PDF.
+        A tuple containing the `pymupdf.Document` object and the number of pages in the PDF.
 
     Raises:
         FileNotFoundError: If the provided PDF path is invalid.
@@ -235,7 +235,7 @@ def get_page_text_embedding(text_data: Union[dict, str]) -> dict:
 
 
 def get_chunk_text_metadata(
-    page: fitz.Page,
+    page: pymupdf.Page,
     character_limit: int = 1000,
     overlap: int = 100,
     embedding_size: int = 128,
@@ -246,7 +246,7 @@ def get_chunk_text_metadata(
     * Returns the extracted text, the chunked text dictionary, and the chunk embeddings dictionary.
 
     Args:
-        page: The fitz.Page object to process.
+        page: The pymupdf.Page object to process.
         character_limit: Maximum characters per chunk (defaults to 1000).
         overlap: Number of overlapping characters between chunks (defaults to 100).
         embedding_size: Size of the embedding vector (defaults to 128).
@@ -297,7 +297,7 @@ def get_image_for_gemini(
     and loads it as a PIL Image Object.
 
     Parameters:
-    - doc (fitz.Document): The PDF document from which the image is extracted.
+    - doc (pymupdf.Document): The PDF document from which the image is extracted.
     - image (tuple): A tuple containing image information.
     - image_no (int): The image number for naming purposes.
     - image_save_dir (str): The directory where the image will be saved.
@@ -310,7 +310,7 @@ def get_image_for_gemini(
 
     # Extract the image from the document
     xref = image[0]
-    pix = fitz.Pixmap(doc, xref)
+    pix = pymupdf.Pixmap(doc, xref)
 
     # Convert the image to JPEG format
     pix.tobytes("jpeg")
