@@ -17,10 +17,10 @@ multimodal_model = GenerativeModel("gemini-1.0-pro-vision")
 pdf_folder_path = "data/"  # if running in Vertex AI Workbench.
 
 # Specify the image description prompt. Change it
-image_description_prompt = """Explain what is going on in the image.
-If it's a table, extract all elements of the table.
-If it's a graph, explain the findings in the graph.
-Do not include any numbers that are not mentioned in the image.
+image_description_prompt = """Explica los contenidos de la imagen.
+Si es una tabla, extrae todos los elementos de ella.
+Si es un grafo, explica las conclusiones de este.
+No incluyas números ni datos que no estén incluidos en la imagen.
 """
 
 # Extract text and image metadata from the PDF document

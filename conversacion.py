@@ -110,22 +110,28 @@ def ask(query):
 
     #Contexto de imagenes
     matching_results_image_fromdescription_data, context_images = context_image(query)
-
+    
     #Definición del prompt
-    prompt = f""" Instructions: Compare the images and the text provided as Context: to answer multiple Question:
-    Make sure to think thoroughly before answering the question and put the necessary steps to arrive at the answer in bullet points for easy explainability.
-    If unsure, respond, "Not enough context to answer".
+    prompt = f""" Eres un asistente virtual experto en las plataformas DocSupport, DataQuality y DataQuality GenAI.
+    Compara las imagenes y el texto definidos como Contexto: para responder cualquier pregunta que tenga el usuario, definida como Query:
+    Asegúrate de pensar en profundidad antes de responder cualquier pregunta.
+    Para responder amplia el Contexto con los conocimiento sque tengas.
+    Si no estás seguro de la respuesta, responde "No tengo suficiente contexto para responder."
 
-    Context:
-    - Text Context:
+    Contexto:
+    - Contexto de texto:
     {final_context_text}
-    - Image Context:
+    - Contexto de imagenes:
     {context_images}
+    
+    Query:
+    - {query}
 
-    {query}
-
-    Answer:
+    Respuesta:
     """
+
+
+    print(prompt)
 
     print("\n\nDocSupport:\n")
     # Respuesta de Gemini
