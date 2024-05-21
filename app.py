@@ -56,7 +56,7 @@ input_language = st.sidebar.selectbox("idioma",
 # Streamed response emulator
 def response_generator():
     if not prompt:
-        response = "¡Hola! Soy DataQuality Support, un chatbot que busca ayudar a solucionar cualquier duda que tengas acerca de la plataforma DataQuality Platform. Hazme cualquier pregunta que tengas."
+        response = "¡Hola! Soy DocSupport, un chatbot que busca ayudar a solucionar cualquier duda que tengas acerca de la plataforma DataQuality Platform y el propio DocSupport. Hazme cualquier pregunta que tengas."
     else:
         response = ask(prompt)
     return response
