@@ -285,7 +285,7 @@ def get_chunk_text_metadata(
 
 
 def get_image_for_gemini(
-    doc: fitz.Document,
+    doc: pymupdf.Document,
     image: tuple,
     image_no: int,
     image_save_dir: str,
