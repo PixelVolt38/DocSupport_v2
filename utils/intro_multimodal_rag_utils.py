@@ -128,15 +128,13 @@ def get_pdf_doc_object(pdf_path: str) -> tuple[fitz.Document, int]:
         FileNotFoundError: If the provided PDF path is invalid.
 
     """
-
     # Open the PDF file
-    doc: fitz.Document = fitz.open(pdf_path)
+    doc = fitz.open(pdf_path)
 
     # Get the number of pages in the PDF file
-    num_pages: int = len(doc)
+    num_pages = len(doc)
 
     return doc, num_pages
-
 
 # Add colors to the print
 class Color:
