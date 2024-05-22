@@ -4,8 +4,6 @@ from conversacion import *
 
 #crear_conversacion()
 st.cache_data.clear()
-user_avatar = "😀"
-assistant_avatar = "interfaz/imgs/Galleta.jpg"
 #imgs/Galleta.jpg  🤖
 
 st.set_page_config(
@@ -39,13 +37,13 @@ def updatemol():
 
 st.sidebar.image("interfaz/imgs/inetum_logo.jpg", width=200)
 st.sidebar.image("interfaz/imgs/LogoCeep.png", width=200)
-st.sidebar.markdown("---")
+# st.sidebar.markdown("---")
 
-input_language = st.sidebar.selectbox("idioma",
-                    ['Español', 'English'],
-                    on_change=updatemol,
-                    #help="""Choose the input info of your molecule. If the app is slow, use SMILES input.""" + smiles_help
-                    )
+# input_language = st.sidebar.selectbox("idioma",
+#                     ['Español', 'English'],
+#                     on_change=updatemol,
+#                     #help="""Choose the input info of your molecule. If the app is slow, use SMILES input.""" + smiles_help
+#                     )
 
 #if input_language:
 #    cambiar_idioma(input_language)
@@ -56,14 +54,23 @@ input_language = st.sidebar.selectbox("idioma",
 # Streamed response emulator
 def response_generator():
     if not prompt:
-        response = "¡Hola! Soy DocSupport, un chatbot que busca ayudar a solucionar cualquier duda que tengas acerca de la plataforma DataQuality Platform y el propio DocSupport. Hazme cualquier pregunta que tengas."
+        response = "¡Hola! Soy DataQuality Support, un chatbot que busca ayudar a solucionar cualquier duda que tengas acerca de la plataforma DataQuality Platform. Hazme cualquier pregunta que tengas."
+        image_paths = []
     else:
         response = ask(prompt)
-    return response
+        #response="Hola, a ver si te funciona la imagen"
+        # Get context images based on user query
+        matching_results_image_fromdescription_data, _ = context_image(prompt)
+    
+        # Extract only the image paths from the first three results
+        image_paths = [
+        matching_results_image_fromdescription_data[i]["img_path"]
+        for i in range(min(3, len(matching_results_image_fromdescription_data)))
+        ]
+    return [response, image_paths]
     # for word in response.split(): 
     #     yield word + " "
     #     time.sleep(0.05)
-
 
 
 st.title("DocSupport")
@@ -75,32 +82,30 @@ if "messages" not in st.session_state:
 # Display chat messages from history on app rerun
 for message in st.session_state.messages:
     role = message["role"]
-    # Set avatar based on role
-    if role == "assistant":
-        avatar_image = assistant_avatar
-    elif role == "user":
-        avatar_image = user_avatar
-    else:
-        avatar_image = None
-    with st.chat_message(role, avatar=avatar_image):
-        st.write(message["content"])
+    with st.chat_message(role):
+        st.write(message["content"][0])
+        with st.expander("Estas imágenes pueden resultarte útiles"):
+            for im in message["content"][1]:
+                st.image(im, width=400)
     
 
 # Accept user input
 if prompt := st.chat_input(""):
     # Display user message in chat message container
-    with st.chat_message("user", avatar = user_avatar):   
+    with st.chat_message("user"):   
         st.markdown(prompt)
     # Add user message to chat history
-    st.session_state.messages.append({"role": "user", "content": prompt})
+    st.session_state.messages.append({"role": "user", "content": [prompt,()]})
 
 
 # Display assistant response in chat message container
-with st.chat_message("assistant", avatar = assistant_avatar):
+with st.chat_message("assistant",):
     #response = st.write_stream(response_generator())
-    response = response_generator()
+    response, image_paths = response_generator()
     st.write(response)
+    with st.expander("Estas imágenes pueden resultarte útiles"):
+        for img in image_paths:
+            st.image(img, width=800)
+    
 # Add assistant response to chat history
-st.session_state.messages.append({"role": "assistant", "content": response})
-
-
+st.session_state.messages.append({"role": "assistant", "content": [response,image_paths] })

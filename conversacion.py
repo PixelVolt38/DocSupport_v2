@@ -77,6 +77,7 @@ def context_image(query):
         )
     return matching_results_image_fromdescription_data, context_images
 
+
 def adv_results(matching_results_image_fromdescription_data, matching_results_chunks_data):
     print("---------------Matched Images------------------\n")
     display_images(
@@ -113,10 +114,11 @@ def ask(query):
     
     #Definición del prompt
     prompt = f""" Eres un asistente virtual experto en las plataformas DocSupport, DataQuality y DataQuality GenAI.
+    Tu objetivo es responer todas las preguntas que te hagan con alto nivel de detalle.
     Compara las imagenes y el texto definidos como Contexto: para responder cualquier pregunta que tenga el usuario, definida como Query:
     Asegúrate de pensar en profundidad antes de responder cualquier pregunta.
-    Para responder amplia el Contexto con los conocimiento sque tengas.
     Si no estás seguro de la respuesta, responde "No tengo suficiente contexto para responder."
+    Puedes
 
     Contexto:
     - Contexto de texto:
