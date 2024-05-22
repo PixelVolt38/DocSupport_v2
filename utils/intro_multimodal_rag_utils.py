@@ -465,7 +465,7 @@ def get_document_metadata(
     image_description_prompt: str,
     embedding_size: int = 128,
     generation_config: Optional[GenerationConfig] = GenerationConfig(
-        temperature=0.2, max_output_tokens=2048
+        temperature=0.5, max_output_tokens=2048
     ),
     safety_settings: Optional[dict] = {
         HarmCategory.HARM_CATEGORY_HARASSMENT: HarmBlockThreshold.BLOCK_NONE,
